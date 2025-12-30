@@ -1,0 +1,26 @@
+<?php
+// ===========================================
+// FILE: public/.htaccess
+// ===========================================
+?>
+# Disable directory browsing
+Options -Indexes
+
+# Prevent direct access to sensitive files
+<FilesMatch "(^#.*#|\.(bak|conf|dist|fla|in[ci]|log|orig|psd|sh|sql|sw[op])|~)$">
+    Require all denied
+</FilesMatch>
+
+RewriteEngine On
+
+# Redirect to HTTPS (Optional - uncomment for production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Remove index.php from URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+# Set default charset
+AddDefaultCharset UTF-8
