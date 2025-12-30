@@ -1,7 +1,4 @@
 <?php
-// ===========================================
-// FILE: app/Database/Seeds/UserSeeder.php
-// ===========================================
 
 namespace App\Database\Seeds;
 
@@ -11,6 +8,9 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
+        // Reset users biar gak duplicate
+        $this->db->table('users')->emptyTable();
+
         $data = [
             [
                 'username'     => 'admin',

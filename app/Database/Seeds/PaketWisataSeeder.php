@@ -1,34 +1,32 @@
-﻿<?php
-namespace App\\Database\\Seeds;
+<?php
 
-use CodeIgniter\\Database\\Seeder;
-// ===========================================
-// FILE: app/Database/Seeds/PaketWisataSeeder.php
-// ===========================================
+namespace App\Database\Seeds;
+
+use CodeIgniter\Database\Seeder;
 
 class PaketWisataSeeder extends Seeder
 {
     public function run()
     {
+        // aman walau ada FK
+        $this->db->table('paket_wisata')->emptyTable();
+
         $data = [
             [
-                'nama_paket'       => 'Paket Wisata Alam 2D1N',
-                'slug'             => 'paket-wisata-alam-2d1n',
-                'deskripsi'        => 'Paket wisata alam lengkap dengan penginapan dan makan',
-                'harga'            => 450000,
-                'durasi'           => '2 Hari 1 Malam',
-                'minimal_peserta'  => 2,
-                'maksimal_peserta' => 20,
-                'include'          => json_encode(['Penginapan', 'Makan 3x', 'Tour Guide', 'Tiket Wisata', 'Dokumentasi']),
-                'exclude'          => json_encode(['Transportasi ke lokasi', 'Pengeluaran pribadi']),
-                'itinerary'        => json_encode([
-                    'Hari 1' => ['Check-in', 'Makan siang', 'Wisata Air Terjun', 'Makan malam', 'Api unggun'],
-                    'Hari 2' => ['Sarapan', 'Trekking pagi', 'Check-out', 'Wisata desa']
-                ]),
-                'thumbnail'        => 'paket-alam.jpg',
-                'kontak'           => '081234567893',
+                'nama_paket'       => 'Paket Wisata Hemat',
+                'slug'             => 'paket-wisata-hemat',
+                'deskripsi'        => 'Paket wisata hemat cocok untuk keluarga dan rombongan kecil.',
+                'harga'            => 150000.00,
+                'durasi'           => '1 Hari',
+                'minimal_peserta'  => 1,
+                'maksimal_peserta' => 10,
+                'include'          => 'Transport, Guide, Tiket Masuk',
+                'exclude'          => 'Makan siang, Penginapan',
+                'itinerary'        => '08.00 Berangkat - 10.00 Wisata - 16.00 Pulang',
+                'thumbnail'        => 'paket-hemat.jpg',
+                'kontak'           => '081234567890',
                 'status'           => 'aktif',
-                'views'            => 67,
+                'views'            => 0,
                 'created_by'       => 1,
                 'created_at'       => date('Y-m-d H:i:s'),
             ],
