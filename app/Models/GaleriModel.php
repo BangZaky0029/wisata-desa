@@ -1,7 +1,8 @@
 ﻿<?php
-// ===========================================
-// FILE: app/Models/GaleriModel.php
-// ===========================================
+
+namespace App\Models;
+
+use CodeIgniter\Model;
 
 class GaleriModel extends Model
 {
@@ -26,8 +27,30 @@ class GaleriModel extends Model
         'foto'  => 'required',
     ];
 
+    protected $validationMessages = [];
+    protected $skipValidation = false;
+    protected $cleanValidationRules = true;
+
+    protected $allowCallbacks = true;
+    protected $beforeInsert = [];
+    protected $afterInsert = [];
+    protected $beforeUpdate = [];
+    protected $afterUpdate = [];
+    protected $beforeDelete = [];
+    protected $afterDelete = [];
+
     public function getByKategori($kategori)
     {
-        return $this->where(['kategori' => $kategori, 'status' => 'aktif'])->findAll();
+        return $this->where(['kategori' => $kategori, 'status' => 'aktif'])
+                    ->orderBy('created_at', 'DESC')
+                    ->findAll();
+    }
+
+    public function getByStatus($status = 'aktif')
+    {
+        return $this->where('status', $status)
+                    ->orderBy('views', 'DESC')
+                    ->findAll();
     }
 }
+?>
